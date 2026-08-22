@@ -18,3 +18,4 @@ __pycache__/
 vector_store/
 vector_store_test/
 vector_store_test_direct/
+data/raw/*.pdf
