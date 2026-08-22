@@ -16,3 +16,5 @@ __pycache__/
 
 # Future vector database
 vector_store/
+vector_store_test/
+vector_store_test_direct/

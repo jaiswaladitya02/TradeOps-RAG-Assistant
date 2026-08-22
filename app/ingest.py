@@ -1,48 +1,67 @@
 from pdf_loader import load_pdf
 from chunker import chunk_documents
+from embeddings import LocalEmbeddingModel
+from vector_store import create_vector_store
+
+
+PDF_PATH = "data/raw/TradeOps_Enterprise_Manual_Improved.pdf"
 
 
 def main():
-    """
-    Main entry point for the document ingestion pipeline.
-    """
-
-    pdf_path = "data/raw/TradeOps_Enterprise_Manual_50_Pages.pdf"
 
     print("=" * 60)
     print("TRADE OPERATIONS RAG - DOCUMENT INGESTION")
     print("=" * 60)
 
-    # Step 1: Load the PDF
-    documents = load_pdf(pdf_path)
+    # ---------------------------------------------------------
+    # 1. Load PDF
+    # ---------------------------------------------------------
 
-    print(f"\nDocuments Loaded : {len(documents)}")
+    print("\nLoading PDF...")
 
-    # Step 2: Chunk the documents
+    documents = load_pdf(PDF_PATH)
+
+    print(f"Documents loaded: {len(documents)}")
+
+    # ---------------------------------------------------------
+    # 2. Create chunks
+    # ---------------------------------------------------------
+
+    print("\nCreating chunks...")
+
     chunks = chunk_documents(documents)
 
-    print(f"Chunks Created  : {len(chunks)}")
+    print(f"Chunks created: {len(chunks)}")
 
-    # Step 3: Inspect a sample chunk
+    # ---------------------------------------------------------
+    # 3. Load embedding model
+    # ---------------------------------------------------------
+
+    print("\nLoading embedding model...")
+
+    embedding_model = LocalEmbeddingModel()
+
+    print("Embedding model loaded!")
+
+    # ---------------------------------------------------------
+    # 4. Create vector store
+    # ---------------------------------------------------------
+
+    print("\nCreating vector store...")
+
+    collection = create_vector_store(
+        chunks=chunks,
+        embedding_model=embedding_model,
+        persist_directory="vector_store"
+    )
+
+    print("\nVector store created successfully!")
+
+    print(f"Total chunks stored: {collection.count()}")
+
     print("\n" + "=" * 60)
-    print("CHUNK INSPECTION")
+    print("INGESTION COMPLETE")
     print("=" * 60)
-
-    print(f"Total Chunks: {len(chunks)}")
-
-    print("\nFirst Chunk")
-    print("-" * 40)
-    print(chunks[0].page_content)
-
-    print("\nMetadata")
-    print(chunks[0].metadata)
-
-    print("\nLength")
-    print(len(chunks[0].page_content))
-
-    print("\nSecond Chunk")
-    print("-" * 40)
-    print(chunks[1].page_content[:300])
 
 
 if __name__ == "__main__":

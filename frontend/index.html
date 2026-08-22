@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        TradeOps AI Assistant
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- Brand -->
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                T
+            </div>
+
+
+            <div>
+
+                <div class="brand-name">
+                    TradeOps AI
+                </div>
+
+                <div class="brand-subtitle">
+                    RAG Assistant
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- System Status -->
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            <span id="statusText">
+                Checking system...
+            </span>
+
+        </div>
+
+
+        <!-- New Chat -->
+
+        <button
+            class="new-chat-button"
+            onclick="newChat()"
+        >
+
+            <span>
+                ＋
+            </span>
+
+            New Chat
+
+        </button>
+
+
+        <!-- Knowledge Base -->
+
+        <div class="sidebar-section">
+
+
+            <div class="sidebar-title">
+                Knowledge Base
+            </div>
+
+
+            <!-- Document -->
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    Document
+                </div>
+
+                <div class="info-value">
+                    TradeOps Enterprise Manual
+                </div>
+
+            </div>
+
+
+            <!-- Engine -->
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    Engine
+                </div>
+
+                <div class="info-value">
+                    ChromaDB + RAG
+                </div>
+
+            </div>
+
+
+            <!-- Document Count -->
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    Knowledge Chunks
+                </div>
+
+                <div
+                    id="documentCount"
+                    class="info-value"
+                >
+                    Checking...
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Sidebar Bottom -->
+
+        <div class="sidebar-bottom">
+
+            <div>
+                TradeOps RAG Assistant
+            </div>
+
+            <div class="version">
+                v1.0
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- Header -->
+
+        <header class="header">
+
+
+            <div>
+
+                <h1>
+                    TradeOps Assistant
+                </h1>
+
+
+                <p>
+                    Ask questions about trade operations,
+                    clearing, reconciliation and controls.
+                </p>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             CHAT
+        ================================================== -->
+
+        <section class="chat-container">
+
+
+            <div
+                id="chat"
+                class="chat"
+            >
+
+
+                <!-- Welcome -->
+
+                <div
+                    id="welcome"
+                    class="welcome"
+                >
+
+
+                    <div class="welcome-icon">
+                        T
+                    </div>
+
+
+                    <h2>
+                        How can I help?
+                    </h2>
+
+
+                    <p>
+                        Ask a question about the TradeOps
+                        documentation.
+                    </p>
+
+
+                    <!-- Suggestions -->
+
+                    <div class="suggestions">
+
+
+                        <button
+                            class="suggestion"
+                            onclick="askSuggestion(this)"
+                        >
+                            How are trade breaks investigated?
+                        </button>
+
+
+                        <button
+                            class="suggestion"
+                            onclick="askSuggestion(this)"
+                        >
+                            What is the role of clearing in trade operations?
+                        </button>
+
+
+                        <button
+                            class="suggestion"
+                            onclick="askSuggestion(this)"
+                        >
+                            Why are client instructions important?
+                        </button>
+
+
+                        <button
+                            class="suggestion"
+                            onclick="askSuggestion(this)"
+                        >
+                            What are reconciliation controls?
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             INPUT
+        ================================================== -->
+
+        <div class="input-area">
+
+
+            <div class="input-wrapper">
+
+
+                <textarea
+                    id="question"
+                    placeholder="Ask a question about TradeOps..."
+                    rows="1"
+                ></textarea>
+
+
+                <button
+                    id="sendButton"
+                    class="send-button"
+                    onclick="sendQuestion()"
+                >
+
+                    <span id="sendText">
+                        ➤
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+            <div class="input-hint">
+
+                TradeOps AI answers using the provided
+                documentation.
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>
